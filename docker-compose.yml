@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  express-app:
+    image: sajjadphicode/docker_autopull:latest
+    container_name: docker_autopull_test
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
